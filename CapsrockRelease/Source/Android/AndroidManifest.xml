@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="capsrock.alpha"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:debuggable="true">
+        
+        <meta-data android:name="com.google.android.gms.version"
+        		   android:value="@integer/google_play_services_version" />
+        
+        <activity
+            android:name="capsrock.MainActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="capsrock.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="capsrock.TimeEntryFragment"
+            android:label="@string/title_activity_time_entry_fragment"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="capsrock.Geofencing.addActivity"
+           		  android:screenOrientation="portrait"></activity>
+        
+        <service android:name="capsrock.Geofencing.ReceiveTransitionsIntentService"
+            android:exported="false"></service>
+        <service android:name="capsrock.TimeEntryService"
+            android:exported="false"
+            android:enabled="true"></service>
+        <receiver android:name="capsrock.AlarmReceiver">
+          <intent-filter> 
+              <action android:name="cleanUp"></action>
+              <action android:name="getStart"></action>
+              </intent-filter>  
+        </receiver>
+    </application>
+
+</manifest>
